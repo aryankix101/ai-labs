@@ -1,3 +1,5 @@
+#Use splitlines, make it 5000x6 instead of 5000x5000, figure out all possible words from a given word and use _ to replace character differences
+
 import sys, time
 
 start=time.time()
