@@ -38,7 +38,6 @@ if sys.argv[1]=='F':
         area = (p*(p-x)*(p-y)*(p-z))**0.5
         print(area)
 
-#Currently returns a dictionary, is that ok? Document said list...
 if sys.argv[1]=='G':
     chars = {
         'a': 0,
@@ -51,4 +50,4 @@ if sys.argv[1]=='G':
         if c in chars:
             chars[c]+=1
     
-    print(chars)
+    print(list(chars.items()))
