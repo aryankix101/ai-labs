@@ -30,7 +30,7 @@ if sys.argv[1]=='E':
     print(', '.join(values))
 
 if sys.argv[1]=='F':
-    x, y, z = int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4])
+    x, y, z = float(sys.argv[2]), float(sys.argv[3]), float(sys.argv[4])
     if (x + y <= z) or (x + z <= y) or (y + z <= x) :
         print("Invalid triangle.")
     else:
