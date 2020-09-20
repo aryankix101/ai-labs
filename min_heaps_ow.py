@@ -33,10 +33,10 @@ class MinHeap:
         return (2*pos) + 2
     
     #Returning true if the node is a leaf, else false
-    def isleaf(self, pos):
-        if self.getleftchildidx(pos)>=len(self.HeapArray) and self.getrightchildidx(pos)>=len(self.HeapArray):
-            return True
-        return False
+    def hasleftandrightchild(self, pos):
+        if self.getleftchildidx(pos)>=len(self.HeapArray) or self.getrightchildidx(pos)>=len(self.HeapArray):
+            return False
+        return True
     
     #Swapping two nodes
     def swap(self, idx1, idx2):
@@ -58,23 +58,22 @@ class MinHeap:
         self.HeapArray.pop(len(self.HeapArray)-1)
         nodeidx = 0
         #Initial switch with the root node and it's two children
-        rootlist = [self.HeapArray[nodeidx], self.HeapArray[self.getleftchildidx(nodeidx)], self.HeapArray[self.getrightchildidx(nodeidx)]]
-        minimum = rootlist.index(min(rootlist))
-        self.swap(0, minimum)
-        if minimum==1:
-            nodeidx = 1
-        else:
-            nodeidx = 2
+        swapper = self.getleftchildidx(nodeidx)
+        if(self.HeapArray[self.getrightchildidx(nodeidx)] < self.HeapArray[self.getleftchildidx(nodeidx)]):
+                swapper = self.getrightchildidx(nodeidx)
+        self.swap(nodeidx, swapper)
+        nodeidx = swapper
+        isTrue = True
         #While the node is greater than it's child, keep on swapping (heapifying down)
-        while self.HeapArray[nodeidx] > (self.HeapArray[self.getleftchildidx(nodeidx)]):
+        while isTrue==True and (self.HeapArray[nodeidx] > (self.HeapArray[self.getleftchildidx(nodeidx)]) or self.HeapArray[nodeidx] > (self.HeapArray[self.getrightchildidx(nodeidx)])):
             swapper = self.getleftchildidx(nodeidx)
             if(self.HeapArray[self.getrightchildidx(nodeidx)] < self.HeapArray[self.getleftchildidx(nodeidx)]):
                 swapper = self.getrightchildidx(nodeidx)
             self.swap(nodeidx, swapper)
             nodeidx = swapper
 
-            if self.isleaf(nodeidx):
-                break
+            if self.hasleftandrightchild(nodeidx) is False:
+                isTrue = False
             else:
                 continue
             
