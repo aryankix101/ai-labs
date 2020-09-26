@@ -1,5 +1,6 @@
 import sys
 import time
+from collections import deque  
 
 
 def find_goal(size, board):
@@ -52,10 +53,10 @@ def goal_test(size, board):
     return False
 
 def bfs(size, start_board):
-    queue = [[start_board]]
+    queue = deque([[start_board]])
     visited = set()
     while queue:
-        path = queue.pop(0)
+        path = queue.popleft()
         board = path[-1]
         if goal_test(size, board):
             return len(path)-1
